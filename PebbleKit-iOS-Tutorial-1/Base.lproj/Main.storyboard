@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxZ-53-iNA">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5K-sw-S9A">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Launch Sports App">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="launchButtonPressed:" destination="vXZ-lx-hvc" eventType="touchDown" id="QsA-G6-cCg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mh4-bf-kd3">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Send Sports Data">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dataButtonPressed:" destination="vXZ-lx-hvc" eventType="touchDown" id="ZPn-1Q-Y8v"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mh4-bf-kd3" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="95" id="0NA-kP-jiu"/>
+                            <constraint firstItem="UxZ-53-iNA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="CfH-bz-qWc"/>
+                            <constraint firstItem="Y5K-sw-S9A" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Pvi-PO-mTg"/>
+                            <constraint firstAttribute="centerX" secondItem="Y5K-sw-S9A" secondAttribute="centerX" id="Qw0-CD-2fE"/>
+                            <constraint firstItem="Y5K-sw-S9A" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="57" id="gbh-3e-t9g"/>
+                            <constraint firstItem="mh4-bf-kd3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="jCa-j3-tQx"/>
+                            <constraint firstAttribute="centerX" secondItem="UxZ-53-iNA" secondAttribute="centerX" id="pD3-ey-hqx"/>
+                            <constraint firstItem="UxZ-53-iNA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="19" id="rRU-zY-91K"/>
+                            <constraint firstAttribute="centerX" secondItem="mh4-bf-kd3" secondAttribute="centerX" id="rYC-9h-7oZ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="UxZ-53-iNA"/>
+                                <exclude reference="Y5K-sw-S9A"/>
+                                <exclude reference="mh4-bf-kd3"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="CfH-bz-qWc"/>
+                                <exclude reference="pD3-ey-hqx"/>
+                                <exclude reference="rRU-zY-91K"/>
+                                <exclude reference="Pvi-PO-mTg"/>
+                                <exclude reference="Qw0-CD-2fE"/>
+                                <exclude reference="gbh-3e-t9g"/>
+                                <exclude reference="0NA-kP-jiu"/>
+                                <exclude reference="jCa-j3-tQx"/>
+                                <exclude reference="rYC-9h-7oZ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="UxZ-53-iNA"/>
+                                <include reference="Y5K-sw-S9A"/>
+                                <include reference="mh4-bf-kd3"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="CfH-bz-qWc"/>
+                                <include reference="pD3-ey-hqx"/>
+                                <include reference="rRU-zY-91K"/>
+                                <include reference="Pvi-PO-mTg"/>
+                                <include reference="Qw0-CD-2fE"/>
+                                <include reference="gbh-3e-t9g"/>
+                                <include reference="0NA-kP-jiu"/>
+                                <include reference="jCa-j3-tQx"/>
+                                <include reference="rYC-9h-7oZ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="outputLabel" destination="UxZ-53-iNA" id="qbe-zw-Paj"/>
+                        <outlet property="sendDataButton" destination="mh4-bf-kd3" id="O4e-5J-lgq"/>
+                        <outlet property="sportsButton" destination="Y5K-sw-S9A" id="6Jp-zI-Fmy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="346.5" y="447.75"/>
+        </scene>
+    </scenes>
+</document>
