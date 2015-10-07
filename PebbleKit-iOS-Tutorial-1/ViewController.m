@@ -58,7 +58,7 @@
     
     // Check AppMessage is supported by this watch
     [self.watch appMessagesGetIsSupported:^(PBWatch *watch, BOOL isAppMessagesSupported) {
-        if(isAppMessagesSupported) {
+        if (isAppMessagesSupported) {
             // Tell the user using the Label
             self.outputLabel.text = @"AppMessage is supported!";
         } else {
@@ -72,7 +72,7 @@
     // Register to get messages from watch
     [self.watch sportsAppAddReceiveUpdateHandler:^BOOL(PBWatch *watch, SportsAppActivityState state) {
         __strong typeof(welf) sself = welf;
-        if(!sself) {
+        if (!sself) {
             // self has been destroyed
             return NO;
         }
@@ -95,9 +95,9 @@
     }];
 }
 
--(void)pebbleCentral:(PBPebbleCentral *)central watchDidDisconnect:(PBWatch *)watch {
+- (void)pebbleCentral:(PBPebbleCentral *)central watchDidDisconnect:(PBWatch *)watch {
     // Only remove reference if it was the current active watch
-    if(self.watch == watch) {
+    if (self.watch == watch) {
         self.watch = nil;
         self.outputLabel.text = @"Watch disconnected";
     }
