@@ -49,8 +49,8 @@
     }];
 }
 
--(void)pebbleCentral:(PBPebbleCentral *)central watchDidConnect:(PBWatch *)watch isNew:(BOOL)isNew {
-    if(self.watch) {
+- (void)pebbleCentral:(PBPebbleCentral *)central watchDidConnect:(PBWatch *)watch isNew:(BOOL)isNew {
+    if (self.watch) {
         return;
     }
     self.watch = watch;
@@ -66,18 +66,27 @@
         }
     }];
     
+    // Keep a weak reference to self to prevent it staying around forever
+    __weak typeof(self) welf = self;
+    
     // Register to get messages from watch
     [self.watch sportsAppAddReceiveUpdateHandler:^BOOL(PBWatch *watch, SportsAppActivityState state) {
+        __strong typeof(welf) sself = welf;
+        if(!sself) {
+            // self has been destroyed
+            return NO;
+        }
+        
         // Display the new state of the watchapp
         switch (state) {
             case SportsAppActivityStateRunning:
-                self.outputLabel.text = @"Watchapp now RUNNING.";
+                sself.outputLabel.text = @"Watchapp now RUNNING.";
                 break;
             case SportsAppActivityStatePaused:
-                self.outputLabel.text = @"Watchapp now PAUSED.";
+                sself.outputLabel.text = @"Watchapp now PAUSED.";
                 break;
             default:
-                self.outputLabel.text = @"UNKNOWN CASE";
+                sself.outputLabel.text = @"UNKNOWN CASE";
                 break;
         }
         
