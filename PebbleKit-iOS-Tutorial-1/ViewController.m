@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "PebbleKit/PebbleKit.h"
-#import "AppDelegate.h"
 
 @interface ViewController () <PBPebbleCentralDelegate>
 

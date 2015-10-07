@@ -10,8 +10,6 @@
 
 @interface AppDelegate () <PBPebbleCentralDelegate>
 
-@property PBWatch *watch;
-
 @end
 
 @implementation AppDelegate
