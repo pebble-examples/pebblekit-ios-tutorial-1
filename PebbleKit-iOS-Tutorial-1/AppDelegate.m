@@ -16,19 +16,8 @@
 
 @implementation AppDelegate
 
-- (PBWatch *)getConnectedWatch {
-    return self.watch;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    // Get Pebble events by setting this object as the delegate
-    [[PBPebbleCentral defaultCentral] setDelegate:self];
-    
-    // Set watch property to the object representing the last connected watch
-    self.watch = [[PBPebbleCentral defaultCentral] lastConnectedWatch];
-    
     return YES;
 }
 

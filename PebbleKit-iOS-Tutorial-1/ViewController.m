@@ -12,7 +12,8 @@
 
 @interface ViewController () <PBPebbleCentralDelegate>
 
-@property PBWatch *watch;
+@property (weak, nonatomic) PBWatch *watch;
+@property (weak, nonatomic) PBPebbleCentral *central;
 
 @property (weak, nonatomic) IBOutlet UILabel *outputLabel;
 @property (weak, nonatomic) IBOutlet UIButton *sportsButton;
@@ -23,78 +24,89 @@
 @implementation ViewController
 
 - (IBAction)launchButtonPressed:(id)sender {
-    // Set the communication UUID
-    [[PBPebbleCentral defaultCentral] setAppUUID:PBSportsUUID];
-    
     // Launch Sports watchapp
     [self.watch sportsAppLaunch:^(PBWatch *watch, NSError *error) {
         if (error) {
             // Show the error
-            [self.outputLabel setText:error.localizedDescription];
+            self.outputLabel.text = error.localizedDescription;
         } else {
-            [self.outputLabel setText:@"App launched!"];
+            self.outputLabel.text = @"App launched!";
         }
     }];
 }
 
 - (IBAction)dataButtonPressed:(id)sender {
     // Make dictionary of data
-    NSDictionary *updateDict = @{ PBSportsTimeKey: @"12:52", PBSportsDistanceKey: @"23.8"};
+    NSDictionary *updateDict = @{PBSportsTimeKey: @"12:52", PBSportsDistanceKey: @"23.8"};
     
     // Send to watch
     [self.watch sportsAppUpdate:updateDict onSent:^(PBWatch *watch, NSError *error) {
         if (error) {
             // Show the error
-            [self.outputLabel setText:error.localizedDescription];
+            self.outputLabel.text = error.localizedDescription;
         } else {
-            [self.outputLabel setText:@"Data sent OK!"];
+            self.outputLabel.text = @"Data sent OK!";
         }
     }];
+}
+
+-(void)pebbleCentral:(PBPebbleCentral *)central watchDidConnect:(PBWatch *)watch isNew:(BOOL)isNew {
+    if(self.watch) {
+        return;
+    }
+    self.watch = watch;
+    self.outputLabel.text = @"Watch connected!";
+    
+    // Check AppMessage is supported by this watch
+    [self.watch appMessagesGetIsSupported:^(PBWatch *watch, BOOL isAppMessagesSupported) {
+        if(isAppMessagesSupported) {
+            // Tell the user using the Label
+            self.outputLabel.text = @"AppMessage is supported!";
+        } else {
+            self.outputLabel.text = @"AppMessage is NOT supported!";
+        }
+    }];
+    
+    // Register to get messages from watch
+    [self.watch sportsAppAddReceiveUpdateHandler:^BOOL(PBWatch *watch, SportsAppActivityState state) {
+        // Display the new state of the watchapp
+        switch (state) {
+            case SportsAppActivityStateRunning:
+                self.outputLabel.text = @"Watchapp now RUNNING.";
+                break;
+            case SportsAppActivityStatePaused:
+                self.outputLabel.text = @"Watchapp now PAUSED.";
+                break;
+            default:
+                self.outputLabel.text = @"UNKNOWN CASE";
+                break;
+        }
+        
+        // Finally
+        return YES;
+    }];
+}
+
+-(void)pebbleCentral:(PBPebbleCentral *)central watchDidDisconnect:(PBWatch *)watch {
+    // Only remove reference if it was the current active watch
+    if(self.watch == watch) {
+        self.watch = nil;
+        self.outputLabel.text = @"Watch disconnected";
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Get reference to watch
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    self.watch = [delegate getConnectedWatch];
+    // Set the delegate to receive PebbleKit events
+    self.central = [PBPebbleCentral defaultCentral];
+    self.central.delegate = self;
     
-    // Check the watch object is available
-    if(self.watch) {
-        // Check AppMessage is supported by this watch
-        [self.watch appMessagesGetIsSupported:^(PBWatch *watch, BOOL isAppMessagesSupported) {
-            if(isAppMessagesSupported) {
-                // Tell the user using the Label
-                [self.outputLabel setText:@"AppMessage is supported!"];
-            } else {
-                [self.outputLabel setText:@"AppMessage is NOT supported!"];
-            }
-        }];
-        
-        // Register UUID
-        [[PBPebbleCentral defaultCentral] setAppUUID:PBSportsUUID];
-        
-        // Register to get messages from watch
-        [self.watch sportsAppAddReceiveUpdateHandler:^BOOL(PBWatch *watch, SportsAppActivityState state) {
-            // Display the new state of the watchapp
-            switch (state) {
-                case SportsAppActivityStateRunning:
-                    [self.outputLabel setText:@"Watchapp now RUNNING."];
-                    break;
-                case SportsAppActivityStatePaused:
-                    [self.outputLabel setText:@"Watchapp now PAUSED."];
-                    break;
-                default:
-                    [self.outputLabel setText:@"UNKNOWN CASE"];
-                    break;
-            }
-            
-            // Finally
-            return YES;
-        }];
-    } else {
-        [self.outputLabel setText:@"No Pebble watch available!"];
-    }
+    // Register UUID
+    self.central.appUUID = PBSportsUUID;
+    
+    // Begin connection
+    [self.central run];
 }
 
 - (void)didReceiveMemoryWarning {
