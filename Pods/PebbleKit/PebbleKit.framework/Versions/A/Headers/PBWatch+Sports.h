@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import <PebbleKit/PBWatch.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class UIImage;
 
 /**
@@ -102,12 +104,12 @@ PB_EXTERN_CLASS @interface PBSportsUpdate : NSObject
  *  The state of the Sports activity.
  *  @see -sportsAppAddReceiveUpdateHandler:
  */
-typedef enum {
+typedef NS_ENUM(uint8_t, SportsAppActivityState) {
   SportsAppActivityStateInit = 0x00,
   SportsAppActivityStateRunning = 0x01,
   SportsAppActivityStatePaused = 0x02,
   SportsAppActivityStateEnd = 0x03,
-} SportsAppActivityState;
+};
 
 /**
  *  Queries the watch whether Sports Messages are supported.
@@ -125,7 +127,7 @@ typedef enum {
  *  @param onSent The handler that will be called when the launch command has been sent or timed out (after 1.5 secs).
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)sportsAppLaunch:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)sportsAppLaunch:(void(^ __nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 /**
  *  Send a command to kill the sports app on the watch that the receiver represents.
@@ -133,7 +135,7 @@ typedef enum {
  *  @param onSent The handler that will be called when the kill command has been sent or timed out (after 1.5 secs).
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)sportsAppKill:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)sportsAppKill:(void(^ __nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 /**
  *  Send a command to the sports app on the watch that the receiver represents, to set the preferred
@@ -153,7 +155,7 @@ typedef enum {
  *  @param onSent The handler that will be called when the unit command has been sent or timed out (after 1.5 secs).
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)sportsAppSetLabel:(BOOL)isPace onSent:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)sportsAppSetLabel:(BOOL)isPace onSent:(void(^ __nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 /**
  *  Send a command to the sports app on the watch that the receiver represents, to set the state of the
@@ -164,7 +166,7 @@ typedef enum {
  *  @param onSent The handler that will be called when the unit command has been sent or timed out (after 1.5 secs).
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)sportsAppSetActivityState:(SportsAppActivityState)state onSent:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)sportsAppSetActivityState:(SportsAppActivityState)state onSent:(void(^ __nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 /**
  *  Sends the update to the sports app on the watch that the receiver represents.
@@ -174,7 +176,7 @@ typedef enum {
  *  @param onSent The handler that will be called when the update has been sent or timed out (after 1.5 secs).
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)sportsAppUpdate:(NSDictionary*)update onSent:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)sportsAppUpdate:(NSDictionary*)update onSent:(void(^__nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 /**
  *  Add a receive handler for incoming Sports updates that are send by the Sports watch application.
@@ -207,6 +209,8 @@ typedef enum {
  *  @param watch The watch on which the custom title and icon have been set.
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)sportsSetTitle:(NSString*)title icon:(UIImage*)icon onSent:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)sportsSetTitle:(NSString*)title icon:(UIImage*)icon onSent:(void(^ __nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 @end
+
+NS_ASSUME_NONNULL_END

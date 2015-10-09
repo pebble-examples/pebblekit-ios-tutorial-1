@@ -11,6 +11,8 @@
 #import <UIKit/UIImage.h>
 #import <PebbleKit/gtypes.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Helper class to convert a UIImage to Pebble bitmap pixel data and GBitmap metadata.
  *  Refer to the documentation of Pebble's native watch app SDK on the GBitmap format.
@@ -50,3 +52,5 @@ PB_EXTERN_CLASS @interface PBBitmap : NSObject
 + (PBBitmap*)pebbleBitmapWithUIImage:(UIImage*)image;
 
 @end
+
+NS_ASSUME_NONNULL_END

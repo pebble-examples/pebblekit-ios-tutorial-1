@@ -13,16 +13,15 @@
 
 /* Begin PBXFileReference section */
 		15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1FFF42DFC9BADF9D9BF8368FCE244430 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleVendor.framework; sourceTree = "<group>"; };
 		393E044496941058C608FAF64007CCD6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
 		636BC752E7946EF6919A00D1F8EAE693 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		6D682B68108E52F6A06B1420D75440CE /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleKit.framework; sourceTree = "<group>"; };
 		751E06D414CFBB3844A19AF1F7AAFBB8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
 		AEEDA5F6291892906F3CBBF39B8BC98F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		F544E664EA23C82471AAB47D479D781B /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		FDB9670906816F2D081369656CC28AC9 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,15 +42,6 @@
 				636BC752E7946EF6919A00D1F8EAE693 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		709D23A72AA33BB430DDCB89507D89DF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FDB9670906816F2D081369656CC28AC9 /* PebbleKit.framework */,
-				1FFF42DFC9BADF9D9BF8368FCE244430 /* PebbleVendor.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -79,10 +69,10 @@
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		A4B7F458FABD033E3140D61A6F39C484 /* PebbleKit */ = {
+		AF817068CC9F757A2255AAAC1B0F8CEA /* PebbleKit */ = {
 			isa = PBXGroup;
 			children = (
-				709D23A72AA33BB430DDCB89507D89DF /* Frameworks */,
+				C48CF2441CF3FBF8C43BB1DD71C69637 /* Frameworks */,
 			);
 			path = PebbleKit;
 			sourceTree = "<group>";
@@ -90,7 +80,7 @@
 		B1A1325BF16EE1D02673DE9296F6E218 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A4B7F458FABD033E3140D61A6F39C484 /* PebbleKit */,
+				AF817068CC9F757A2255AAAC1B0F8CEA /* PebbleKit */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -99,6 +89,14 @@
 			isa = PBXGroup;
 			children = (
 				53F661C0CA7190D2CF05023FB33D61E4 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C48CF2441CF3FBF8C43BB1DD71C69637 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D682B68108E52F6A06B1420D75440CE /* PebbleKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

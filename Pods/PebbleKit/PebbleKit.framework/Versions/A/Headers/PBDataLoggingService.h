@@ -8,6 +8,8 @@
 
 #import <PebbleKit/PBDefines.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Data logging datatypes.
  */
@@ -49,7 +51,7 @@ PB_EXTERN_CLASS @interface PBDataLoggingSessionMetadata : NSObject <NSSecureCodi
 /**
  *  The serial number of the watch that created the sessions.
  */
-@property (nonatomic, readonly) NSString *serialNumber;
+@property (nonatomic, readonly) NSString * __null_unspecified serialNumber;
 
 /**
  *  Creates a new data logging session metadata object, given all its property values.
@@ -233,3 +235,5 @@ PB_EXTERN_CLASS @interface PBDataLoggingService : NSObject
 - (void)pollForData;
   
 @end
+
+NS_ASSUME_NONNULL_END

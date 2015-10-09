@@ -7,21 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
 #import <PebbleKit/PBDefines.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  PBFirmwareVersion is a helper class that is able to parse the versionTag string
  *  into its components (os, major, minor, suffix) and facilitate comparisons
  *  between versions.
  *  Valid versions follow the following format:
- *  `vOS(.MAJOR(.MINOR(-SUFFIX)))`
+ *  `(v)OS(.MAJOR(.MINOR(-SUFFIX)))`
  *  Where the fields OS, MAJOR, MINOR are positive, decimal integer numbers and SUFFIX
  *  an arbitrary string. MAJOR, MINOR and SUFFIX are optional (nested optionality).
  *  Examples of valid versions:
- *  `v1`
- *  `v2.1234.99-alpha-beta-gamma`
+ *  `1`
+ *  `v2`
+ *  `v3.4-foo`
+ *  `v4.1234.99-alpha-beta-gamma`
  */
 PB_EXTERN_CLASS @interface PBFirmwareVersion : NSObject <NSCopying>
 /**
@@ -59,7 +61,7 @@ PB_EXTERN_CLASS @interface PBFirmwareVersion : NSObject <NSCopying>
  *  The version's git commit hash.
  *  @discussion The commit hash is not used in the -compare: method.
  */
-@property (nonatomic, readonly, copy) NSString *commitHash;
+@property (nonatomic, readonly, copy) NSString * __nullable commitHash;
 
 /**
  *  The version's git tag.
@@ -74,13 +76,13 @@ PB_EXTERN_CLASS @interface PBFirmwareVersion : NSObject <NSCopying>
 /**
  *  Creates a PBFirmwareVersion object given a tag string and timestamp.
  */
-+ (PBFirmwareVersion*)firmwareVersionWithTag:(NSString*)tag commitHash:(NSString*)commitHash timestamp:(UInt32)timestamp;
++ (PBFirmwareVersion*)firmwareVersionWithTag:(NSString*)tag commitHash:(NSString * __nullable)commitHash timestamp:(UInt32)timestamp;
 
 /**
  *  Creates a PBFirmwareVersion object given its components.
  *  @discussion The tag string will be set to the canonical format vOS.MINOR.MAJOR(-SUFFIX).
  */
-+ (PBFirmwareVersion*)firmwareVersionWithOS:(NSInteger)os major:(NSInteger)major minor:(NSInteger)minor suffix:(NSString*)suffix commitHash:(NSString*)commitHash timestamp:(UInt32)timestamp;
++ (PBFirmwareVersion*)firmwareVersionWithOS:(NSInteger)os major:(NSInteger)major minor:(NSInteger)minor suffix:(NSString * __nullable)suffix commitHash:(NSString * __nullable)commitHash timestamp:(UInt32)timestamp;
 
 /**
  *  Compares the receiver to another version object.
@@ -98,3 +100,5 @@ PB_EXTERN_CLASS @interface PBFirmwareVersion : NSObject <NSCopying>
 - (BOOL)isEqualVersionOnly:(PBFirmwareVersion *)other;
 
 @end
+
+NS_ASSUME_NONNULL_END

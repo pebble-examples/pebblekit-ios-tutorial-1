@@ -8,6 +8,8 @@
 
 #import <PebbleKit/PBWatch.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PBWatch (Ping)
 
 /**
@@ -19,6 +21,8 @@
  * @param cookie The cookie that was initially passed when calling this method.
  * @param onTimeout The block handler that will be called when the watch failed to reply in time.
  */
-- (void)pingWithCookie:(UInt32)cookie onPong:(void(^)(PBWatch *watch, UInt32 cookie))onPong onTimeout:(void(^)(PBWatch *watch, UInt32 cookie))onTimeout;
+- (void)pingWithCookie:(UInt32)cookie onPong:(void(^ __nullable)(PBWatch *watch, UInt32 cookie))onPong onTimeout:(void(^ __nullable)(PBWatch *watch, UInt32 cookie))onTimeout;
 
 @end
+
+NS_ASSUME_NONNULL_END

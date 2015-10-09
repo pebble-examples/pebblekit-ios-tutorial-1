@@ -10,8 +10,9 @@
 #import <Foundation/Foundation.h>
 #import <PebbleKit/PBWatch.h>
 
-@class UIImage;
+NS_ASSUME_NONNULL_BEGIN
 
+@class UIImage;
 
 /**
  *  The UUID of the Golf watch app.
@@ -57,12 +58,11 @@ PB_EXTERN NSNumber *PBGolfParKey;
  *  The command IDs that can be sent back by the Golf watch app.
  *  @see -golfAppAddReceiveUpdateHandler:
  */
-typedef enum {
+typedef NS_ENUM(uint8_t, GolfAppCommand) {
   GolfAppCommandPrevious = 0x01,
   GolfAppCommandNext = 0x02,
   GolfAppCommandSelect = 0x03,
-} GolfAppCommand;
-
+};
 
 @interface PBWatch (Golf)
 
@@ -82,7 +82,7 @@ typedef enum {
  *  @param onSent The handler that will be called when the launch command has been sent or timed out (after 1.5 secs).
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)golfAppLaunch:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)golfAppLaunch:(void(^ __nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 /**
  *  Send a command to kill the golf app on the watch that the receiver represents.
@@ -90,7 +90,7 @@ typedef enum {
  *  @param onSent The handler that will be called when the kill command has been sent or timed out (after 1.5 secs).
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)golfAppKill:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)golfAppKill:(void(^ __nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 /**
  *  Sends an update to the golf app on the watch that the receiver represents.
@@ -101,7 +101,7 @@ typedef enum {
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  *  @see PBGolfFrontKey, PBGolfMidKey, PBGolfBackKey, PBGolfHoleKey and PBGolfParKey
  */
-- (void)golfAppUpdate:(NSDictionary*)update onSent:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)golfAppUpdate:(NSDictionary*)update onSent:(void(^ __nullable)(PBWatch *watch, NSError * __nullable error))onSent;
 
 /**
  *  Add a receive handler for incoming Golf updates that are send by the Golf watch application.
@@ -134,6 +134,8 @@ typedef enum {
  *  @param watch The watch on which the custom title and icon have been set.
  *  @param error nil if the operation was successful, or else an NSError with more information why it failed.
  */
-- (void)golfSetTitle:(NSString*)title icon:(UIImage*)icon onSent:(void(^)(PBWatch *watch, NSError *error))onSent;
+- (void)golfSetTitle:(NSString*)title icon:(UIImage*)icon onSent:(void(^)(PBWatch *watch, NSError * __nullable error))onSent;
 
 @end
+
+NS_ASSUME_NONNULL_END

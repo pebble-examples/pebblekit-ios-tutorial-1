@@ -9,6 +9,8 @@
 #import <PebbleKit/PBWatch.h>
 #import <PebbleKit/PBVersionInfo.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^PBVersionInfoCompletionBlock)(PBWatch *watch, PBVersionInfo *versionInfo);
 
 PB_EXTERN NSTimeInterval const PBVersionInfoResponseTimeout;
@@ -32,6 +34,8 @@ PB_EXTERN NSTimeInterval const PBVersionInfoResponseTimeout;
  *  @discussion The <PBVersionInfo> response will be cached. The latest version info can be
  *  accessed through the <versionInfo> property of <PBWatch>.
  */
-- (void)getVersionInfo:(PBVersionInfoCompletionBlock)handler onTimeout:(void (^)(PBWatch *watch))onTimeout;
+- (void)getVersionInfo:(PBVersionInfoCompletionBlock)handler onTimeout:(void (^ __nullable)(PBWatch *watch))onTimeout;
 
 @end
+
+NS_ASSUME_NONNULL_END

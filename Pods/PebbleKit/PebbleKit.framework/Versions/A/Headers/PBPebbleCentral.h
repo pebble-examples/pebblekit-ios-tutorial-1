@@ -14,33 +14,36 @@
 @protocol PBPebbleCentralDelegate;
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  PebbleCentral plays the central role for client iOS apps (e.g. RunKeeper).
  */
 PB_EXTERN_CLASS @interface PBPebbleCentral : NSObject
 
 /**
- *  Enables debug logs. The logs will be routed to the system log (ASL) and
- *  console. It is advised to call this before making any other calls to PebbleKit.
- *  @note Logging uses CocoaLumberjack so you need to add the loggers manually
- *  @see +addLumberjackLoggers
+ *  Configures which events should be logged via NSLog.
+ *  It is advised to call this before making any other calls to PebbleKit,
+ *  for example in your AppDelegate's `application:willFinishLaunchingWithOptions:`
+ *  before state restoration happens.
+ *  @see PBLog
  */
-+ (void)setDebugLogsEnabled:(BOOL)logsEnabled;
++ (void)setLogLevel:(PBPebbleKitLogLevel)logLevel;
 
 /**
  The watches that are currently connected. Do not cache the array because it can change over time.
  */
-@property (nonatomic, readonly, copy) NSArray *connectedWatches;
+@property (nonatomic, readonly, copy) PBGeneric(NSArray, PBWatch *) *connectedWatches;
 
 /**
  The watches that are stored in the user preferences of the application.
  */
-@property (nonatomic, readonly, copy) NSArray *registeredWatches;
+@property (nonatomic, readonly, copy) PBGeneric(NSArray, PBWatch *) *registeredWatches;
 
 /**
  The central's delegate.
  */
-@property (nonatomic, readwrite, weak) id<PBPebbleCentralDelegate> delegate;
+@property (nonatomic, readwrite, weak) id<PBPebbleCentralDelegate> __nullable delegate;
 
 /**
  *  The UUID is used as the identifier of the watch application and is used
@@ -52,13 +55,13 @@ PB_EXTERN_CLASS @interface PBPebbleCentral : NSObject
  *  @param uuid The 16 byte UUID of your app.
  *  @note The UUID needs to be set before using either app message or data logging.
  */
-@property (nonatomic, copy) NSUUID *appUUID;
+@property (nonatomic, copy) NSUUID * __nullable appUUID;
 
 /**
  *  The list of App-UUIDs this PebbleCentral wants to talk to.
  *  @see addAppUUID:
  */
-@property (nonatomic, copy) NSSet *appUUIDs;
+@property (nonatomic, copy) PBGeneric(NSSet, NSUUID *) *appUUIDs;
 
 /**
  *  Registers a new App-UUID with appUUIDs.
@@ -74,6 +77,8 @@ PB_EXTERN_CLASS @interface PBPebbleCentral : NSObject
 
 /**
  @returns YES if the Pebble iOS app is installed, NO if it is not installed.
+ @discussion Since iOS 9.0 you have to add "pebble" to `LSApplicationQueriesSchemes`
+             in your `Info.plist`.
  */
 - (BOOL)isMobileAppInstalled;
 
@@ -121,3 +126,5 @@ PB_EXTERN_CLASS @interface PBPebbleCentral : NSObject
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 @end
+
+NS_ASSUME_NONNULL_END

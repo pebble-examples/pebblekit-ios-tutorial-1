@@ -11,7 +11,6 @@
 
 @class PBFirmwareVersion;
 
-
 /**
  *  Values specifying the Pebble hardware platform variant.
  */
@@ -30,8 +29,12 @@ typedef NS_ENUM(uint8_t, FirmwareMetadataPlatform) {
   FirmwareMetadataPlatformPebbleOneBigboard2 = 0xfe,
   FirmwareMetadataPlatformPebbleSnowyBigboard = 0xfd,
   FirmwareMetadataPlatformPebbleSnowyBigboard2 = 0xfc,
+  FirmwareMetadataPlatformPebbleSpaldingEVT = 9,
+  FirmwareMetadataPlatformPebbleSpalding = 11,
+  FirmwareMetadataPlatformPebbleSpaldingBigboard = 0xfb,
 };
 
+NS_ASSUME_NONNULL_BEGIN
 
 PB_EXTERN_CLASS @interface PBFirmwareMetadata : NSObject
 
@@ -67,3 +70,5 @@ PB_EXTERN_CLASS @interface PBFirmwareMetadata : NSObject
 + (FirmwareMetadataPlatform)stringToHardwarePlatform:(NSString *)hardwarePlatformString;
 
 @end
+
+NS_ASSUME_NONNULL_END

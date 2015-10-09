@@ -8,9 +8,12 @@
 
 #import <PebbleKit/PBDefines.h>
 
-PB_EXTERN int PBLogLevel;
-
 PB_EXTERN int const PBKitContext;
 PB_EXTERN int const PBWSContext;
 
-PB_EXTERN void PBLog(BOOL synchronous, int level, int flag, int context, const char *file, const char *function, int line, id tag, NSString *format, ...) __attribute__ ((format (__NSString__, 9, 10)));
+/**
+ *  All logging will be sent through this function.
+ *  The default implementation will log this on NSLog if (level & flag) != 0.
+ *  @discussion The parameters match the `LOG_MACRO` parameters of CocoaLumberjack 1.x
+ */
+PB_EXTERN void PBLog(BOOL synchronous, PBPebbleKitLogLevel level, PBPebbleKitLogFlag flag, int context, const char *file, const char *function, int line, id tag, NSString *format, ...) __attribute__ ((format (__NSString__, 9, 10)));

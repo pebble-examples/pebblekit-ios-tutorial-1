@@ -9,6 +9,8 @@
 #import <PebbleKit/PBDefines.h>
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 PB_EXTERN NSString *PBErrorDomain;
 
 /**
@@ -52,7 +54,7 @@ typedef enum {
  *  @param code The error code for which to create the error
  *  @param error The underlying error
  */
-+ (NSError*)pebbleErrorWithCode:(PBErrorCode)code underLyingError:(NSError*)error;
++ (NSError*)pebbleErrorWithCode:(PBErrorCode)code underLyingError:(NSError * __nullable)error;
 
 /**
  *  Convenience method to create an NSError object with <PBErrorDomain> error domain
@@ -62,3 +64,5 @@ typedef enum {
 + (NSError*)pebbleErrorWithCode:(PBErrorCode)code;
 
 @end
+
+NS_ASSUME_NONNULL_END

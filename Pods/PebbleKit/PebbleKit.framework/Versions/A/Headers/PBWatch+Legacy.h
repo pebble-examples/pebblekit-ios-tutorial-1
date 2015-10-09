@@ -8,6 +8,8 @@
 
 #import <PebbleKit/PBWatch.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PBWatch (Legacy)
 
 /**
@@ -20,6 +22,8 @@
  *  has completed. If there is no open session, the onDone block will (also) be executed
  *  asynchronously on the calling queue.
  */
-- (void)closeSession:(void(^)(void))onDone __deprecated_msg("Method deprecated. Use `releaseSharedSession`");
+- (void)closeSession:(void(^ __nullable)(void))onDone __deprecated_msg("Method deprecated. Use `releaseSharedSession`");
 
 @end
+
+NS_ASSUME_NONNULL_END

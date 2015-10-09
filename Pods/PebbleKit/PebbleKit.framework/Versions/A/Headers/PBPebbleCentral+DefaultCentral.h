@@ -8,6 +8,8 @@
 
 #import <PebbleKit/PBPebbleCentral.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PBPebbleCentral (DefaultCentral)
 
 /**
@@ -16,3 +18,5 @@
 + (instancetype)defaultCentral;
 
 @end
+
+NS_ASSUME_NONNULL_END

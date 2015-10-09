@@ -21,8 +21,12 @@ typedef NS_OPTIONS(NSUInteger, PBRemoteProtocolCapabilitiesFlags) {
   PBRemoteProtocolCapabilitiesFlagsExtendedNotificationService = 1 << 3, // unused
   PBRemoteProtocolCapabilitiesFlagsLanguagePacksSupported      = 1 << 4, // unused
   PBRemoteProtocolCapabilitiesFlagsAppMessage8kSupported       = 1 << 5,
+  PBRemoteProtocolCapabilitiesFlagsDismissFromPhoneSupported   = 1 << 6,
+  PBRemoteProtocolCapabilitiesFlagsThirdPartyVoiceSupported    = 1 << 7,
 };
 
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  An instance of PBVersionInfo describes all the different system software (Pebble OS)
@@ -90,3 +94,5 @@ PB_EXTERN_CLASS @interface PBVersionInfo : NSObject
 - (BOOL)hasSystemResources;
 
 @end
+
+NS_ASSUME_NONNULL_END

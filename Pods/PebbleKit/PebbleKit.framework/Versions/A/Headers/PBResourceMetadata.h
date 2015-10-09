@@ -9,6 +9,8 @@
 #import <PebbleKit/PBDefines.h>
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Instances of PBResourceMetadata describe (system) resources.
  *  @see PBVersionInfo
@@ -26,3 +28,5 @@ PB_EXTERN_CLASS @interface PBResourceMetadata : NSObject
 @property (nonatomic, readonly) UInt32 crc;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -14,6 +14,8 @@
 @class PBVersionInfo;
 @class PBDataLoggingService;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Represents a Pebble watch.
  *
@@ -73,20 +75,20 @@ PB_EXTERN_CLASS @interface PBWatch : NSObject
  *  The versionInfo of the receiver.
  *  @see PBVersionInfo
  */
-@property (nonatomic, strong, readonly) PBVersionInfo *versionInfo;
+@property (nonatomic, strong, readonly) PBVersionInfo * __nullable versionInfo;
 
 /**
  *  The delegate of the watch that will be notified of disconnections and errors.
  *  @see PBWatchDelegate
  */
-@property (nonatomic, weak) id<PBWatchDelegate> delegate;
+@property (nonatomic, weak) id<PBWatchDelegate> __nullable delegate;
 
 /**
  *  The userInfo property can be used to associate application specific data
  *  with the watch. Note that the application itself is responsible for persisting
  *  the information if neccessary.
  */
-@property (nonatomic, strong) id userInfo;
+@property (nonatomic, strong) id __nullable userInfo;
 
 /**
  *  The date when the watch was last known to be connected.
@@ -143,3 +145,5 @@ PB_EXTERN_CLASS @interface PBWatch : NSObject
 - (void)watchDidCloseSession:(PBWatch*)watch;
 
 @end
+
+NS_ASSUME_NONNULL_END

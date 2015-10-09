@@ -8,6 +8,8 @@
 
 #import <PebbleKit/PBPebbleCentral.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PBPebbleCentral (Legacy)
 
 /**
@@ -17,4 +19,12 @@
  */
 - (BOOL)hasValidAppUUID __deprecated_msg("Method deprecated. Use `appUUID != nil`");
 
+/**
+ *  Enables debug logs. The logs will be printed via NSLog. It is advised to
+ *  call this before making any other calls to PebbleKit.
+ */
++ (void)setDebugLogsEnabled:(BOOL)logsEnabled __deprecated_msg("Method deprecated. Use `setLogLevel:`");
+
 @end
+
+NS_ASSUME_NONNULL_END
