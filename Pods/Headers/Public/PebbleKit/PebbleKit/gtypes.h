@@ -1,1 +1,1 @@
-../../../../PebbleKit/PebbleKit.framework/Versions/A/Headers/gtypes.h
+../../../../PebbleKit/PebbleKit.framework/Headers/gtypes.h
